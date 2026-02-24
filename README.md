@@ -27,11 +27,7 @@ OPTFF : 4
 ## Written Component
 
 ### Q1. Empirical Comparison (>=50 requests each)
-| Input File | k | m  | FIFO | LRU | OPTFF |
-|------------|---|----|------|-----|-------|
-| file1.in   | 3 | 60 | 31   | 26  | 17    |
-| file2.in   | 4 | 60 | 29   | 34  | 19    |
-| file3.in   | 5 | 70 | 33   | 29  | 19    |
+![alt text](image.png)
 
 Comments:
 - OPTFF always has the fewest misses, as expected from optimality.
