@@ -1,8 +1,8 @@
 # Cache Eviction Policy Simulator
 
 ## Student Info
-- Name(s): TODO
-- UFID(s): TODO
+- Name: William Jesser
+- UFID: 5963-4986
 
 ## How to Run
 - Requires Python 3.10+.
