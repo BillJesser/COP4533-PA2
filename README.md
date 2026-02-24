@@ -9,6 +9,13 @@
 - From the repo root: `python src/cache_sim.py <input-file>`
 - Example: `python src/cache_sim.py data/example.in`
 - Use `-` to read from stdin.
+- Example (stdin, PowerShell here-doc):
+  ```
+  @"
+  3 6
+  1 2 3 1 2 4
+  "@ | python src/cache_sim.py -
+  ```
 
 ## Repository Layout
 - `src/cache_sim.py` - simulator for FIFO, LRU, and OPTFF.
