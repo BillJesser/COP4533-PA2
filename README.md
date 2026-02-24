@@ -48,9 +48,3 @@ Induction on request position i:
   2) A keeps y and evicts x: swap x back in and evict y instead. Because y is used no sooner than any cached page, this swap cannot create a new miss before y's next use. The modified algorithm has no more misses than A and now matches OPT at step i.
 By repeating this exchange, we obtain OPT with miss count <= any offline algorithm A. Thus OPT is optimal for every sequence.
 
-## Testing
-- Run `python -m pytest -q`.
-
-## Assumptions
-- Input uses integers separated by whitespace; the first line provides `k m`.
-- No external dependencies beyond the Python standard library.
