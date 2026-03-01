@@ -55,7 +55,7 @@ def simulate_optff(k: int, requests):
     misses = 0
 
     for idx, r in enumerate(requests):
-        future_positions[r].popleft()  # drop current occurrence
+        future_positions[r].popleft() \
 
         if r in cache:
             continue
@@ -63,7 +63,7 @@ def simulate_optff(k: int, requests):
         if len(cache) < k:
             cache.add(r)
             continue
-        # choose victim with farthest next use (or never used again)
+        # choose victim with farthest next use
         farthest_item = None
         farthest_next = -1
         for item in cache:

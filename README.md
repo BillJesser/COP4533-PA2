@@ -33,7 +33,7 @@ OPTFF : 4
 
 ## Written Component
 
-### Q1. Empirical Comparison (>=50 requests each)
+### Q1. Comparison
 ![alt text](image.png)
 
 - OPTFF always has the fewest misses, making it the most optimal.
@@ -44,7 +44,7 @@ OPTFF : 4
 - Miss counts with k = 3: FIFO = 9, LRU = 10, OPTFF = 7.
 - Why LRU loses: after `1,2,3`, the next `4` forces an eviction; LRU drops `1`. Soon after, `1` is needed twice before `3` or `4` return, so those misses cascade. OPTFF keeps items with the nearest future use (keeps `1,2,3`, evicts `4`), avoiding two misses.
 
-### Q3. Proof sketch that OPTFF is optimal
+### Q3. Proof that OPTFF is optimal
 Let OPT be Belady's farthest-in-future policy. Consider any offline algorithm A that knows the whole sequence. We transform A into OPT without adding misses.
 
 Proof via Induction:
