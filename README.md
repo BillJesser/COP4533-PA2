@@ -36,9 +36,8 @@ OPTFF : 4
 ### Q1. Empirical Comparison (>=50 requests each)
 ![alt text](image.png)
 
-Comments:
-- OPTFF always has the fewest misses, as expected from optimality.
-- FIFO vs LRU depends on the sequence: in file1/file3 LRU wins; in file2 FIFO beats LRU because the pattern repeats with weak temporal locality, so LRU evicts useful items more often.
+- OPTFF always has the fewest misses, making it the most optimal.
+- FIFO vs LRU depends on the sequence. In file1/file3 LRU wins, but for file2, FIFO wins. This is beacuse in file2 FIFO beats LRU as the brusty repeats keep FIFOs queue stable, so LRU evicts useful items more often.
 
 ### Q2. Sequence where OPTFF < LRU (k = 3)
 - Sequence: `1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5`
@@ -48,10 +47,12 @@ Comments:
 ### Q3. Proof sketch that OPTFF is optimal
 Let OPT be Belady's farthest-in-future policy. Consider any offline algorithm A that knows the whole sequence. We transform A into OPT without adding misses.
 
-Induction on request position i:
-- Base: before the first request the caches are empty.
-- Step: assume OPT and A have the same cache just before request i. If both hit, move on. If A misses and evicts some page x while OPT would evict y (the page whose next use is farthest in the future), two cases:
-  1) A also evicts y: caches stay aligned; miss counts unchanged.
-  2) A keeps y and evicts x: swap x back in and evict y instead. Because y is used no sooner than any cached page, this swap cannot create a new miss before y's next use. The modified algorithm has no more misses than A and now matches OPT at step i.
-By repeating this exchange, we obtain OPT with miss count <= any offline algorithm A. Thus OPT is optimal for every sequence.
+Proof via Induction:
+- Base Case: before the first request the caches are empty.
+- Step: Assume that right before request I, OPT and A had the same cache. Proceed if both hit. Two situations arise if OPT evicts y (the page whose next usage is farthest in the future) and A misses and evicts some page x:
+  1) A also evicts y; miss counts remain constant and caches remain aligned.
+  2) A evicts x and keeps y: replace x with y. This swap cannot produce a new miss prior to y's subsequent use as y is used before any cached page. The updated algorithm now matches OPT at step i and has no more misses than A.
+
+Repeating this transaction yields OPT with miss count <= any offline algorithm A. Thus, OPT is perfect for everyone.
+We can produce OPT with miss count <= any offline algorithm A by repeating this transaction. OPT is therefore the best option for each sequence.
 
