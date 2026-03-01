@@ -26,8 +26,8 @@
 - Input: `data/example.in`
 - Expected output (also in `data/example.out`):
 ```
-FIFO  : 4
-LRU   : 4
+FIFO : 4
+LRU : 4
 OPTFF : 4
 ```
 
