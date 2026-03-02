@@ -52,7 +52,7 @@ def simulate_optff(k: int, requests):
     misses = 0
 
     for idx, r in enumerate(requests):
-        # consume this occurrence (O(n) pop from front, but simpler)
+        # consume this occurrence 
         if future_positions[r]:
             future_positions[r].pop(0)
 
