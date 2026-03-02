@@ -47,15 +47,14 @@ def simulate_optff(k: int, requests):
     future_positions = defaultdict(list)
     for idx, val in enumerate(requests):
         future_positions[val].append(idx)
-    # convert lists to deques for O(1) pops from left
-    for val in future_positions:
-        future_positions[val] = deque(future_positions[val])
 
     cache = set()
     misses = 0
 
     for idx, r in enumerate(requests):
-        future_positions[r].popleft() \
+        # consume this occurrence (O(n) pop from front, but simpler)
+        if future_positions[r]:
+            future_positions[r].pop(0)
 
         if r in cache:
             continue
@@ -92,5 +91,3 @@ def main(argv=None):
 
 if __name__ == "__main__":
     main()
-
-
